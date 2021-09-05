@@ -13,18 +13,35 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-#load codes
-library(sf)
-library(tidyverse)
-library(ggspatial)
-library(ggthemes)
+
+
+
 
 ## Including Plots
 
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+#load library
+library(sf)
+library(tidyverse)
+library(ggspatial)
+library(ggthemes)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r pressure, echo=FALSE}
+
+#load datasets
+policestation <-st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/e5a0066d38ac4e2abbc7918197a4f6af_6.kml?outSR=%7B%22latestWkid%22%3A2249%2C%22wkid%22%3A102686%7D", quiet = TRUE)
+precincts <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/3525b0ee6e6b427f9aab5d0a1d0a1a28_0.kml?outSR=%7B%22latestWkid%22%3A2249%2C%22wkid%22%3A102686%7D")
+publicspace <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/2868d370c55d4d458d4ae2224ef8cddd_7.kml")
+```
+```{r}
+# actual spatial map
+precinct_plot <- ggplot(precincts) + geom_sf()
+
+precinct_plot
+precinct_plot + geom_sf(data = publicspace, fill = 'blue', alpha = 0.5) + geom_sf(data = policestation, shape = 20, color = "red", size = 5)
+```
+
