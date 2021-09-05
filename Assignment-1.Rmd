@@ -1,0 +1,30 @@
+---
+title: "Assignment 1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(sf)
+library(tidyverse)
+library(ggthemes)
+```
+```{r}
+#nhoods <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/3525b0ee6e6b427f9aab5d0a1d0a1a28_0.kml?outSR=%7B%22latestWkid%22%3A2249%2C%22wkid%22%3A102686%7D", quiet=TRUE)
+water <- st_read("https://gis.cambridgema.gov/download/gdb/BOUNDARY_CDDNeighborhoods.gdb.zip", quiet=TRUE)
+#parking <- st_read("", quiet=TRUE)
+#trees <- st_read("", quiet=TRUE)
+```
+
+```{r}
+ggplot(water) +
+  geom_sf(fill="lightblue", color=NA) +
+  geom_sf(data=trees, color = "darkgreen", size = 0.01) +
+  geom_sf(data=nhoods, fill = NA, color = "gray")
+```
+
