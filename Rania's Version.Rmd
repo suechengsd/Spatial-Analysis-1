@@ -1,9 +1,11 @@
 ---
 title: "Rania's version"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -31,7 +33,7 @@ title: "Assignment 1"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r , include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -79,14 +81,14 @@ ggplot(Openspace) +
 ## Adding Legend
 ```{r}
 ggplot(Openspace) +
-  geom_sf(fill = "lightgreen", color = "darkgreen", size = 0.05, 
+  geom_sf(fill = "lightgreen", size = 0.05, 
           aes(color = "Open Space")) +
-  geom_sf(data = CommunityCenters, color = "red", size = 0.8, shape = 16, alpha = 0.5, 
-          aes(color = "Community Centers")) + 
-  geom_sf(data=Foodtrucks, color = "blue", size= 0.01, shape = 4, 
-          aes(color = "Food Trucks")) +
-  geom_sf(data = nhoods, fill = "NA", color = "gray") +
-  scale_color_manual(values = "lightgreen", name = "Open Space")
+  geom_sf(data = CommunityCenters, size = 0.8, shape = 16, alpha = 0.5, 
+          aes(fill = "Community Centers")) + 
+  geom_sf(data=Foodtrucks, size= 0.01, shape = 4, 
+          aes(fill = "Food Trucks")) +
+  geom_sf(data = nhoods, fill = "NA", color = "gray") 
+  
 ```
 
 ## Dark background map
