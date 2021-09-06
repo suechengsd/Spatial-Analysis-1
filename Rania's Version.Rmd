@@ -80,7 +80,7 @@ ggplot(Openspace) +
 ```{r}
 ggplot(Openspace) +
   geom_sf(fill = "lightgreen", color = "darkgreen", size = 0.05, 
-          aes(fill = "Open Space")) +
+          aes(color = "Open Space")) +
   geom_sf(data = CommunityCenters, color = "red", size = 0.8, shape = 16, alpha = 0.5, 
           aes(color = "Community Centers")) + 
   geom_sf(data=Foodtrucks, color = "blue", size= 0.01, shape = 4, 
@@ -103,4 +103,6 @@ ggplot(Openspace) +
   scale_color_manual(values = "lightgreen", name = "Open Space") +
   labs(caption = "Map tiles and data by OpenStreetMap")
 ```
+```{r}
+
 
