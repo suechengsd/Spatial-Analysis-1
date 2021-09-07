@@ -91,6 +91,8 @@ ggplot(Openspace) +
   
 ```
 
+
+
 ## Dark background map (3 datasets)
 ```{r}
 ggplot(Openspace) +
@@ -105,6 +107,9 @@ ggplot(Openspace) +
   scale_color_manual(values = "lightgreen", name = "Open Space") +
   labs(caption = "Map tiles and data by OpenStreetMap")
 ```
+
+
+
 ## Option 01 (community centers and public greenspace)
 
 ```{r}
@@ -121,6 +126,8 @@ ggplot(Openspace) +
         legend.key = element_rect(fill = "white"))
 ```
 
+
+
 ## Option 02 (community centers and public greenspace)
 
 ```{r message=FALSE}
@@ -136,6 +143,8 @@ ggplot(Openspace) +
    theme(panel.background = element_rect(fill = "white"),
         legend.key = element_rect(fill = "white"))
 ```
+
+
 ## Option 03 (community centers and public greenspace)
 
 ```{r}
@@ -152,6 +161,8 @@ ggplot(Openspace) +
         legend.key = element_rect(fill = "white"))
 
 ```
+
+
 ## Option 04 (community centers and public greenspace)
 
 ```{r}
@@ -167,6 +178,8 @@ ggplot(Openspace) +
    theme(panel.background = element_rect(fill = "white"),
         legend.key = element_rect(fill = "white"))
 ```
+
+
 ## Option 05 (community centers and public greenspace)
 
 ```{r}
