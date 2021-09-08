@@ -5,28 +5,9 @@ output:
   pdf_document: default
 ---
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## Rania Karamallah | Sue Chen | Claire Tham 
 
-
-```{r cars}
-summary(cars)
-```
-
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-
-```{r , include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Group 6: Rania Karamallah, Sue Chen, Claire Tham 
-
-# Assignment discreption
+### Assignment discreption
 
 Data: 
 We chose to look at police stations in relation to neighborhoods and open space in Boston.
@@ -42,7 +23,7 @@ Sue Chen: Created the Github Repo.
 Rania Karamallah: Created the html file for the group assignment and wrote the design and work description.
 Claire Tham: Submitted the assignment on behalf of the group
 
-# loading packages
+### packages
 ```{r load packages, message=FALSE}
 library(sf)
 library(tidyverse)
@@ -51,7 +32,7 @@ library(ggthemes)
 
 ```
 
-# loading datasets
+### datasets
 ```{r}
 CommunityCenters <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/acedd06b39854088b0f2fefccffebf84_0.kml?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D", quiet = TRUE)
 
@@ -65,7 +46,7 @@ policestation <- st_read("https://bostonopendata-boston.opendata.arcgis.com/data
 ```
 
 
-## Map 1
+# Map 1
 
 Comment: I think is is a successful map, the colors are easy to read with the background map.
 
@@ -85,7 +66,7 @@ ggplot(Openspace) +
 
 
 
-## Map 2
+# Map 2
 
 Comment: I think is is a successful map, the colors are easy to read with the background map.
 
@@ -104,7 +85,7 @@ ggplot(Openspace) +
 ```
 
 
-## MAp 3
+# MAp 3
 
 Comment: The color and shape that represents the police stations is not clear in this map as there is little contrast between the yellow and white bachground of the map.
 
@@ -124,7 +105,7 @@ ggplot(Openspace) +
 ```
 
 
-## Map 4
+# Map 4
 
 ```{r}
 ggplot(Openspace) +
@@ -141,7 +122,7 @@ ggplot(Openspace) +
 ```
 
 
-## Map 5
+# Map 5
 
 ```{r}
 ggplot(Openspace) +
