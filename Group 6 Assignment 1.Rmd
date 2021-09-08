@@ -9,37 +9,40 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
 summary(cars)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
----
-title: "Assignment 1"
-output: html_document
----
 
 ```{r , include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Group 6: Rania Karamallah, Sue Chen, Claire Tham 
 
-## loading packages
+# Assignment discreption
+
+Data: 
+We chose to look at police stations in relation to neighborhoods and open space in Boston.
+
+Group Work: 
+We were all eager to learn all aspects of this exercise, so we decided to do the exercise individually after we agreed on the data sets we would use. That helped us figure out the code and feel more confident about R interface. 
+
+We each linked our rmd and html individual files to a Github Repo. and create an html format for our work. We had a few Zoom work sessions together that helped each one of us generate 5 different maps from the datasets we chose. 
+
+For our submission as a group, we selected 5 maps from a collection of our individual maps. In addition to these maps, each member of the group did the following:
+
+Sue Chen: Created the Github Repo.
+Rania Karamallah: Created the html file for the group assignment and wrote the design and work description.
+Claire Tham: Submitted the assignment on behalf of the group
+
+# loading packages
 ```{r load packages, message=FALSE}
 library(sf)
 library(tidyverse)
@@ -48,7 +51,7 @@ library(ggthemes)
 
 ```
 
-## loading datasets
+# loading datasets
 ```{r}
 CommunityCenters <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/acedd06b39854088b0f2fefccffebf84_0.kml?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D", quiet = TRUE)
 
@@ -57,68 +60,22 @@ Foodtrucks <- st_read("https://bostonopendata-boston.opendata.arcgis.com/dataset
 Openspace <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/2868d370c55d4d458d4ae2224ef8cddd_7.kml", quiet = TRUE)
 
 nhoods <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/3525b0ee6e6b427f9aab5d0a1d0a1a28_0.geojson?outSR=%7B%22latestWkid%22%3A2249%2C%22wkid%22%3A102686%7D", quiet = TRUE)
+
+policestation <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/e5a0066d38ac4e2abbc7918197a4f6af_6.kml?outSR=%7B%22latestWkid%22%3A2249%2C%22wkid%22%3A102686%7D" , quiet= TRUE)
 ```
 
 
-## Plotting multiple layers
-```{r}
-ggplot(Openspace) +
-  geom_sf(fill = "lightgreen", color = "NA") +
-  geom_sf(data = CommunityCenters, color = "red", size = 0.8, shape = 16, alpha = 0.5) + 
-  geom_sf(data=Foodtrucks, color = "blue", size= 0.3, shape = 4) +
-  geom_sf(data = nhoods, fill = "NA", color = "gray")
-```
+## Map 1
 
-## Modifying the theme 
-```{r}
-ggplot(Openspace) +
-  geom_sf(fill = "lightgreen", color = "darkgreen", size = 0.05) +
-  geom_sf(data = CommunityCenters, color = "red", size = 0.8, shape = 16, alpha = 0.5) + 
-  geom_sf(data=Foodtrucks, color = "blue", size= 0.01, shape = 4) + 
-   geom_sf(data = nhoods, fill = "NA", color = "gray") 
-```
-
-## Adding Legend
-```{r}
-ggplot(Openspace) +
-  geom_sf(color = "lightgreen", size = 0.05, 
-          aes(fill = "Open Space")) +
-  geom_sf(data = CommunityCenters, size = 0.8, shape = 16, alpha = 0.5, 
-          aes(color = "Community Centers")) + 
-  geom_sf(data=Foodtrucks, size= 0.01, shape = 4, 
-          aes(color = "Food Trucks")) +
-  geom_sf(data = nhoods, fill = "NA", color = "gray") 
-  
-```
-
-
-
-## Dark background map (3 datasets)
-```{r}
-ggplot(Openspace) +
-  annotation_map_tile(zoomin = 0, progress = "none", type = "cartodark")  +
-    geom_sf(fill = "lightgreen", color = "darkgreen", size = 0.05, 
-          aes(fill = "Open Space")) +
-  geom_sf(data = CommunityCenters, color = "red", size = 0.8, shape = 16, alpha = 0.5, 
-          aes(color = "Community Centers")) + 
-  geom_sf(data=Foodtrucks, color = "blue", size= 0.01, shape = 4, 
-          aes(color = "Food Trucks")) +
-  geom_sf(data = nhoods, fill = "NA", color = "gray", size = 0.1) +
-  scale_color_manual(values = "lightgreen", name = "Open Space") +
-  labs(caption = "Map tiles and data by OpenStreetMap")
-```
-
-
-
-## Option 01 (community centers and public greenspace)
+Comment: I think is is a successful map, the colors are easy to read with the background map.
 
 ```{r}
 ggplot(Openspace) +
   annotation_map_tile(zoomin = 0, progress = "none", type = "cartodark")  +
     geom_sf( size = 0.05, color = "darkgreen", 
           aes(fill =  "Open Space")) +
-  geom_sf(data = CommunityCenters, size = 1, shape = 23, alpha = 0.8, 
-          aes(color = "Community Center")) + 
+  geom_sf(data = policestation, size = 1, shape = 23, alpha = 0.8, 
+          aes(color = "Police Stations")) + 
   geom_sf(data = nhoods, fill = "NA", color = "gray", size = 0.1) +
   scale_fill_manual(values = "lightgreen", name = "") +
   scale_color_manual(values = "orange", name = "") +
@@ -128,15 +85,17 @@ ggplot(Openspace) +
 
 
 
-## Option 02 (community centers and public greenspace)
+## Map 2
+
+Comment: I think is is a successful map, the colors are easy to read with the background map.
 
 ```{r message=FALSE}
 ggplot(Openspace) +
   annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight")  +
     geom_sf( size = 0.05, color = "darkgreen", 
           aes(fill =  "Open Space")) +
-  geom_sf(data = CommunityCenters, size = 3, shape = 15, alpha = 0.5, 
-          aes(color = "Community Center")) + 
+  geom_sf(data = policestation, size = 3, shape = 15, alpha = 0.5, 
+          aes(color = "Police Stations")) + 
   geom_sf(data = nhoods, fill = "NA", color = "black", size = 0.1) +
   scale_fill_manual(values = "lightgreen", name = "") +
   scale_color_manual(values = "blue", name = "") +
@@ -145,15 +104,17 @@ ggplot(Openspace) +
 ```
 
 
-## Option 03 (community centers and public greenspace)
+## MAp 3
+
+Comment: The color and shape that represents the police stations is not clear in this map as there is little contrast between the yellow and white bachground of the map.
 
 ```{r}
 ggplot(Openspace) +
   annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
     geom_sf( size = 0.05, color = "darkgreen", 
           aes(fill =  "Open Space")) +
-  geom_sf(data = CommunityCenters, size = 3, shape = 8, 
-          aes(color = "Community Center")) + 
+  geom_sf(data = policestation, size = 3, shape = 8, 
+          aes(color = "Police Stations")) + 
   geom_sf(data = nhoods, fill = "NA", color = "red", size = 0.1) +
   scale_fill_manual(values = "lightgreen", name = "") +
   scale_color_manual(values = "yellow", name = "") +
@@ -163,15 +124,15 @@ ggplot(Openspace) +
 ```
 
 
-## Option 04 (community centers and public greenspace)
+## Map 4
 
 ```{r}
 ggplot(Openspace) +
   annotation_map_tile(zoomin = 0, progress = "none", type = "hotstyle")  +
     geom_sf( size = 0.05, color = "darkgreen", 
           aes(fill =  "Open Space")) +
-  geom_sf(data = CommunityCenters, size = 2, shape = 10, 
-          aes(color = "Community Center")) + 
+  geom_sf(data = policestation, size = 2, shape = 10, 
+          aes(color = "Police Stations")) + 
   geom_sf(data = nhoods, fill = "NA", color = "gray", size = 0.1) +
   scale_fill_manual(values = "red", name = "") +
   scale_color_manual(values = "black", name = "") +
@@ -180,15 +141,15 @@ ggplot(Openspace) +
 ```
 
 
-## Option 05 (community centers and public greenspace)
+## Map 5
 
 ```{r}
 ggplot(Openspace) +
   annotation_map_tile(zoomin = 0, progress = "none", type = "stamenwatercolor")  +
     geom_sf( size = 0.05, color = "darkgreen", 
           aes(fill =  "Open Space")) +
-  geom_sf(data = CommunityCenters, size = 3, shape = 18, 
-          aes(color = "Community Center")) + 
+  geom_sf(data = policestation, size = 3, shape = 18, 
+          aes(color = "Police Stations")) + 
   geom_sf(data = nhoods, fill = "NA", color = "white", size = 0.5) +
   scale_fill_manual(values = "black", name = "") +
   scale_color_manual(values = "purple", name = "") +
