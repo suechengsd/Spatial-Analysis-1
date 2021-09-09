@@ -128,8 +128,8 @@ ggplot(nhoods) +
           aes(fill = "Open Space")) + 
   geom_sf(data= policestation, color = "red", size= 3,  
           aes(shape = "Police Stations")) +  
-  scale_fill_manual(values = c("blue", "green"), name = "Fill") +
-  scale_shape_manual(values = 7, name = "Symbol")
+  scale_fill_manual(values = c("blue", "green"), name = "") +
+  scale_shape_manual(values = 7, name = "")
 ```
 
 
